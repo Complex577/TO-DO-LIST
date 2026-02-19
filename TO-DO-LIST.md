@@ -3,13 +3,13 @@
 # Overview
 Building a To-do list web application having several capabilities:
  Add, complete, and delete tasks manipulation
- Fast application responsiveness 
+ Fast application responsiveness
  Dynamic updates without page refresh
  Clean, organized and a modern UI with responsive design
  Task counters from the added, pending and completed tasks
- Animations features imported from font-awesome 
+ Animations features imported from font-awesome
  Local storage capability
- Dark mode for a friendly user interaction 
+ Dark mode for a friendly user interaction
 
 # Files Created
 1. `to_do_list.html` - Main HTML file
@@ -26,7 +26,7 @@ Building a To-do list web application having several capabilities:
 > Bonus Features
 - Task counter (total, completed, pending)
 - Simple animations (add, remove, moon/sun, list tab, double-checks animations)
-- Local storage using the localStorage variable built-in feature inside the browser 
+- Local storage using the localStorage variable built-in feature inside the browser
 - Dark mode/ light mode view
 - Fast responsive design for mobile and desktop
 
