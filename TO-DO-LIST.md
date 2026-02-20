@@ -1,6 +1,6 @@
 # To-Do List Application README.md
 
-# Note: Currently till on Improvements
+# Note: Currently still on Improvements
 
 # Overview
 Building a To-do list web application having several capabilities:
