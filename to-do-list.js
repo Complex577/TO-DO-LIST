@@ -1,7 +1,15 @@
 const themeBtn = document.getElementById('theme-btn');
+const totalNumber = document.getElementById('total-number');
+const completedNumber = document.getElementById('completed-number');
+const pendingNumber = document.getElementById('pending-number');
+const taskInput = document.getElementById('task-input');
+const addBtn = document.getElementById('add-Btn');
+const tasksList = document.getElementById('tasks-list');
+const emptyState = document.getElementById('empty-state');
+const clearCompleted = document.getElementById('clear-completed');
 
-
-
+let tasks = [];
+let currentFilter = 'all'
 
 
 
@@ -35,3 +43,38 @@ function loadTheme() {
 }
 
 loadTheme();
+
+// Add a new task
+addBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    if(taskInput.value) {
+        tasks.unshift(taskInput.value);
+        saveTasks();
+        sambazaTasks();
+        taskInput.value = '';
+    };
+});
+
+// Save a task
+function saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+//load saved Tasks
+function loadTasks() {
+    localStorage.getItems('tasks', JSON.parse(tasks));
+}
+
+loadTasks();
+
+// Sambaza tasks to any of the filter-btn
+function sambazaTasks() {
+    tasksList.innerHTML = '';
+    
+    let filteredTasks = tasks;
+    if (currentFilter === 'pending') {
+        filteredTasks = tasks.filter()
+
+    }
+}
