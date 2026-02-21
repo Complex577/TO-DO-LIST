@@ -221,7 +221,7 @@ body {
 
 .clear-btn:hover {
     background: var(--clear-hover);
-    color: var(--text-primary)
+    color: var(--text-primary);
     box-shadow: var(--shadow-hover);
 }
 
