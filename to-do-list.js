@@ -11,7 +11,6 @@ const themeBtn = document.getElementById('theme-btn');
 
 // Toggle dark mode
 themeBtn.addEventListener('click', () => {
-    // isDarkMode = !isDarkMode;
     if (document.documentElement.getAttribute('theme-view') !== 'dark'){
         document.documentElement.setAttribute('theme-view', 'dark');
         themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
@@ -23,7 +22,7 @@ themeBtn.addEventListener('click', () => {
     }
 });
 
-// Load saved theme on page load
+// Load saved theme
 function loadTheme() {
     const savedTheme = localStorage.getItem('theme');
     if(savedTheme === 'dark') {
@@ -34,4 +33,8 @@ function loadTheme() {
         themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
     }
 }
+
+loadTheme();
+
+
 
