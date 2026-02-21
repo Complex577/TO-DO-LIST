@@ -11,8 +11,8 @@ const themeBtn = document.getElementById('theme-btn');
 
 // Toggle dark mode
 themeBtn.addEventListener('click', () => {
-    isDarkMode =! isDarkMode;
-    if (isDarkMode) {
+    // isDarkMode = !isDarkMode;
+    if (document.documentElement.getAttribute('theme-view') !== 'dark'){
         document.documentElement.setAttribute('theme-view', 'dark');
         themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
         localStorage.setItem('theme', 'dark');
@@ -22,3 +22,16 @@ themeBtn.addEventListener('click', () => {
         localStorage.setItem('theme', 'light');
     }
 });
+
+// Load saved theme on page load
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme === 'dark') {
+        document.documentElement.setAttribute('theme-view', 'dark');
+        themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+        document.documentElement.removeAttribute('theme-view');
+        themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+}
+
