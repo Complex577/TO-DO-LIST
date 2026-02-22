@@ -145,3 +145,10 @@ function updateStats() {
     pendingNumber.textContent = pending;
 }
 
+//clear all completted tasks
+clearCompleted.addEventListener('click', () => {
+    tasks = tasks.filter(task => !task.completed);
+    saveTasks();
+    renderTasks();
+    updateStats();
+})
