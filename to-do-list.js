@@ -163,3 +163,5 @@ filterBtns.forEach(btn => {
         renderTasks();
     });
 })
+
+document.querySelector('[data-filter="all"]').classList.add('chaguo');
