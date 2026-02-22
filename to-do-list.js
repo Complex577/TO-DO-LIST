@@ -17,7 +17,7 @@ let currentFilter = 'all'
 
 
 
-// Toggle dark mode
+// Activating dark mode
 themeBtn.addEventListener('click', () => {
     if (document.documentElement.getAttribute('theme-view') !== 'dark'){
         document.documentElement.setAttribute('theme-view', 'dark');
@@ -47,13 +47,15 @@ loadTheme();
 // Add a new task
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    addTask();
+});
 
-    if(taskInput.value) {
-        tasks.unshift(taskInput.value);
-        saveTasks();
-        sambazaTasks();
-        taskInput.value = '';
-    };
+//Also add task by just pressing Enter
+taskInput.addEventListener('keypress', (e) => {
+    if(e.key === 'Enter') {
+        e.preventDefault();
+        addTask();
+    }
 });
 
 // Save a task
@@ -63,18 +65,36 @@ function saveTasks() {
 
 //load saved Tasks
 function loadTasks() {
+    const savedTasks = localStorage.getItem('tasks');
+    if (savedTasks) {
+        tasks = JSON.parse(savedTasks);
+        renderTasks();
+        updateStats();
+    }
     localStorage.getItems('tasks', JSON.parse(tasks));
 }
 
 loadTasks();
 
-// Sambaza tasks to any of the filter-btn
-function sambazaTasks() {
+// Render tasks to any of the filter-btn
+function renderTasks() {
     tasksList.innerHTML = '';
     
     let filteredTasks = tasks;
     if (currentFilter === 'pending') {
-        filteredTasks = tasks.filter()
+        filteredTasks = tasks.filter(task => !task.completed);
+    } else if (currentFilter === 'completed') {
+        filteredTasks = tasks.filter(task => task.completed);
+    }
 
+    if (filteredTasks.length === 0) {
+        emptyState.classList.add('visible');
+    } else {
+        emptyState.classLIst.remove('visible');
+        filteredTasks.forEach((task) => {
+            const taskItem = createTask(task);
+            tasksList.appendChild(taskItem);
+        })
+    }
     }
 }
