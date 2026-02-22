@@ -134,4 +134,14 @@ function deleteTask(id) {
     updateStats();
 }
 
+// Update stats
+function updateStats() {
+    const total = tasks.length;
+    const completed = tasks.filter(task => task.completed).length;
+    const pending = total - completed;
+
+    totalNumber.textContent = total;
+    completedNumber.textContent = completed;
+    pendingNumber.textContent = pending;
+}
 
