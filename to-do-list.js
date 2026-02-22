@@ -44,7 +44,7 @@ function loadTheme() {
 
 loadTheme();
 
-// Add a new task
+// Activating add a new task function
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
     addTask();
@@ -57,6 +57,9 @@ taskInput.addEventListener('keypress', (e) => {
         addTask();
     }
 });
+
+//Add a new task function
+
 
 // Save a task
 function saveTasks() {
@@ -71,7 +74,7 @@ function loadTasks() {
         renderTasks();
         updateStats();
     }
-    localStorage.getItems('tasks', JSON.parse(tasks));
+    localStorage.getItem('tasks', JSON.parse(tasks));
 }
 
 loadTasks();
@@ -79,7 +82,7 @@ loadTasks();
 // Render tasks to any of the filter-btn
 function renderTasks() {
     tasksList.innerHTML = '';
-    
+
     let filteredTasks = tasks;
     if (currentFilter === 'pending') {
         filteredTasks = tasks.filter(task => !task.completed);
@@ -90,10 +93,24 @@ function renderTasks() {
     if (filteredTasks.length === 0) {
         emptyState.classList.add('visible');
     } else {
-        emptyState.classLIst.remove('visible');
+        emptyState.classList.remove('visible');
         filteredTasks.forEach((task) => {
-            const taskItem = createTask(task);
-            tasksList.appendChild(taskItem);
-        })
+            const li = document.createElement('li');
+            li.className = 'task-item';
+            li.innerHTML =
+            `<span class="task-text ${task.completed ? 'completed' : ''}" data-id="${task.id}">${task.text}</span>
+            <button class="delete-btn" data-id="${task.id}">
+                <i class= "fas fa-trash"></i>
+            </button> `;
+
+            li.querySelector('.task-text').addEventListener('click', () => {
+                toggleTaskCompletion(task.id)
+            });
+
+            li.querySelector('.delete-btn').addEventListener('click', () => {
+                deleteTask(task.id);
+            });
+        });
     }
-    }
+}
+
