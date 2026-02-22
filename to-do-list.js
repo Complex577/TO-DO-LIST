@@ -104,13 +104,34 @@ function renderTasks() {
             </button> `;
 
             li.querySelector('.task-text').addEventListener('click', () => {
-                toggleTaskCompletion(task.id)
+                taskCompletion(task.id)
             });
 
             li.querySelector('.delete-btn').addEventListener('click', () => {
                 deleteTask(task.id);
             });
+        li.appendChild(li);
         });
     }
 }
+
+// Task completion function
+function taskCompletion(id) {
+    const task = tasks.find(task => task.id === id);
+    if (task) {
+        task.completed = !task.completed;
+        saveTasks();
+        renderTasks();
+        updateStats();
+    }
+};
+
+// Delete task
+function deleteTask(id) {
+    tasks = tasks.filter(task => task.id !== id);
+    saveTasks();
+    renderTasks();
+    updateStats();
+}
+
 
